@@ -1,12 +1,10 @@
 import { globalStyles } from "@/styles/global";
 import { ScrollView, Text } from "react-native";
-import Header from "./header/Header.component";
 
-export default function Home() {
+export default function Meals() {
   return (
     <ScrollView style={globalStyles.container}>
-      <Text style={globalStyles.title}>Welcome to Macrozone</Text>
-      <Header />
+      <Text style={globalStyles.title}>All Meals</Text>
     </ScrollView>
   );
 }
