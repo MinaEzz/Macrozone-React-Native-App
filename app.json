@@ -43,6 +43,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "b06c820d-5476-4a29-8e28-1fccbf9fdfd6"
+      }
+    },
+    "owner": "mina.suleiman"
   }
 }
