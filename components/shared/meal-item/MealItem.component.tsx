@@ -1,20 +1,25 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useDeleteMeal } from "@/hooks/useDeleteMeal.hook";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import IMealItemProps from "./MealItem.types";
 
 export default function MealItem({
+  id,
   name,
   calories,
   protein,
   carbs,
   fat,
+  onDelete,
 }: IMealItemProps) {
+  const { handleLongPress } = useDeleteMeal(id, onDelete);
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onLongPress={handleLongPress}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.macros}>
         {calories} cal • {protein}g P • {carbs}g C • {fat}g F
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 

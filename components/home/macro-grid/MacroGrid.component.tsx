@@ -1,13 +1,44 @@
+import IMeal from "@/types/meal.types";
 import { StyleSheet, View } from "react-native";
 import MacroCard from "./macro-card/MacroCard.component";
 
-export default function MacroGrid() {
+export default function MacroGrid({ meals }: { meals: IMeal[] }) {
+  const totals = meals.reduce(
+    (acc, meal) => ({
+      calories: acc.calories + meal.calories,
+      protein: acc.protein + meal.protein,
+      carbs: acc.carbs + meal.carbs,
+      fat: acc.fat + meal.fat,
+    }),
+    { calories: 0, protein: 0, carbs: 0, fat: 0 },
+  );
+
   return (
     <View style={styles.grid}>
-      <MacroCard label="Calories" value="0kcl" goal="2,000" color="#ff6b6b" />
-      <MacroCard label="Protein" value="0g" goal="150g" color="#4ecdc4" />
-      <MacroCard label="Carbs" value="0g" goal="250g" color="#ffd93d" />
-      <MacroCard label="Fat" value="0g" goal="65g" color="#6bcb77" />
+      <MacroCard
+        label="Calories"
+        value={`${totals.calories}kcl`}
+        goal="2,000"
+        color="#ff6b6b"
+      />
+      <MacroCard
+        label="Protein"
+        value={`${totals.protein}g`}
+        goal="150g"
+        color="#4ecdc4"
+      />
+      <MacroCard
+        label="Carbs"
+        value={`${totals.carbs}g`}
+        goal="250g"
+        color="#ffd93d"
+      />
+      <MacroCard
+        label="Fat"
+        value={`${totals.fat}g`}
+        goal="65g"
+        color="#6bcb77"
+      />
     </View>
   );
 }
