@@ -22,8 +22,12 @@ export async function addMeal(
   return newMeal;
 }
 
-export const deleteMeal = async (id: string): Promise<void> => {
+export async function deleteMeal(id: string): Promise<void> {
   const meals = await getMeals();
   const filtered = meals.filter((meal) => meal.id !== id);
   await AsyncStorage.setItem(MEALS_KEY, JSON.stringify(filtered));
-};
+}
+
+export async function deleteAllMeals() {
+  await AsyncStorage.removeItem(MEALS_KEY);
+}
