@@ -1,7 +1,8 @@
 import { addMeal } from "@/storage/meals";
+import * as Haptics from "expo-haptics";
+import { router } from "expo-router";
 import { useState } from "react";
 import { Alert } from "react-native";
-import { router } from "expo-router";
 
 export function useAddMeal() {
   const [formData, setFormData] = useState({
@@ -42,6 +43,7 @@ export function useAddMeal() {
     });
 
     Alert.alert("Success", "Meal added successfully!");
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
     router.push("/");
   }

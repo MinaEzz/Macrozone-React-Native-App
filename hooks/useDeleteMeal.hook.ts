@@ -1,4 +1,5 @@
 import { deleteMeal } from "@/storage/meals";
+import * as Haptics from "expo-haptics";
 import { Alert } from "react-native";
 
 export function useDeleteMeal(id: string, onDelete: () => void) {
@@ -19,10 +20,13 @@ export function useDeleteMeal(id: string, onDelete: () => void) {
       ],
       { cancelable: true },
     );
+
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
   }
 
   async function handleDeleteMeal() {
     await deleteMeal(id);
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     onDelete();
   }
 
