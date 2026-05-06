@@ -1,17 +1,10 @@
 import IMeal from "@/types/meal.types";
+import { calculateTotals } from "@/utils/calculateTotals";
 import { StyleSheet, View } from "react-native";
 import MacroCard from "./macro-card/MacroCard.component";
 
 export default function MacroGrid({ meals }: { meals: IMeal[] }) {
-  const totals = meals.reduce(
-    (acc, meal) => ({
-      calories: acc.calories + meal.calories,
-      protein: acc.protein + meal.protein,
-      carbs: acc.carbs + meal.carbs,
-      fat: acc.fat + meal.fat,
-    }),
-    { calories: 0, protein: 0, carbs: 0, fat: 0 },
-  );
+  const totals = calculateTotals(meals);
 
   return (
     <View style={styles.grid}>
